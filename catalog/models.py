@@ -4,7 +4,6 @@ from django.db import models
 
 
 class Category(models.Model):
-    help = "Категория товара"
 
     name = models.CharField(max_length=150, verbose_name='Наименование')
     description = models.TextField(verbose_name='Описание', blank=True, null=True)
@@ -19,7 +18,6 @@ class Category(models.Model):
 
 
 class Product(models.Model):
-    help = "Товар"
 
     name = models.CharField(max_length=150, verbose_name='Наименование')
     description = models.TextField(verbose_name='Описание', blank=True, null=True)
