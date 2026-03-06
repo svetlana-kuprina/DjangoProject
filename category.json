@@ -1,0 +1,26 @@
+[
+{
+    "model": "catalog.category",
+    "pk": 1,
+    "fields": {
+        "name": "Оргтехника",
+        "description": "Оргтехника для офиса"
+    }
+},
+{
+    "model": "catalog.category",
+    "pk": 2,
+    "fields": {
+        "name": "Компьютеры",
+        "description": "Компьютеры и комплектующие"
+    }
+},
+{
+    "model": "catalog.category",
+    "pk": 3,
+    "fields": {
+        "name": "Электрооборудование",
+        "description": "Электрооборудование и сопутствующие товары"
+    }
+}
+]
