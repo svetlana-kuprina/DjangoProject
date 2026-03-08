@@ -28,7 +28,7 @@ class Product(models.Model):
     updated_at = models.DateTimeField(auto_now=True, verbose_name='Дата последнего изменения')
 
     def __str__(self):
-        return f'Наименование {self.name} Цена {self.price} Категория товара [{self.category}]'
+        return f'Наименование {self.name} Цена {round(self.price)} Категория товара [{self.category}]'
 
     class Meta:
         verbose_name = 'Продукт'
