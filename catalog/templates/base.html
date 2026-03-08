@@ -16,49 +16,14 @@
     </nav>
 </div>
 
-<div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
-    <h1 class="display-4">Электроник</h1>
-    <p class="lead">Электроник - это магазин электроники и оргтехники</p>
-</div>
-
+{% include 'includes/inc_header.html' %}
 <div class="container">
 
-    <div class="row text-center">
-        {% for product in products %}
-        <div class="col-3">
-            <div class="card mb-4 box-shadow">
-                <div class="card-header">
-                    <h4 class="my-0 font-weight-normal">Наименование {{ product.name }}</h4>
-                </div>
-                <div class="card-body">
-                    <h2 class="card-title pricing-card-title">цена {{ product.price }} руб.</h2>
-                    <ul class="list-unstyled mt-3 mb-4 text-start m-3">
-                        <li> {{ product.description|truncatechars:100 }}</li>
-                    </ul>
-                    <button type="button" class="btn btn-lg btn-block btn-outline-primary">Купить</button>
-                </div>
-            </div>
-        </div>
-        {% endfor %}
-    </div>
-
-
+{% block content %}
+{% endblock %}
     <footer class="pt-4 my-md-5 pt-md-5 border-top">
         <div class="row">
-            <div class="col-12 col-md">
-                SkyStore
-                <small class="d-block mb-3 text-muted">&copy; 2023</small>
-            </div>
-            <div class="col-6 col-md">
-                <h5>Категории</h5>
-                <ul class="list-unstyled text-small">
-                    <li><a class="text-muted" href="#">Рассылки</a></li>
-                    <li><a class="text-muted" href="#">Телеграм боты</a></li>
-                    <li><a class="text-muted" href="#">Полезные утилиты</a></li>
-                    <li><a class="text-muted" href="#">Веб-приложения</a></li>
-                    <li><a class="text-muted" href="#">Микросервисы</a></li>
-                </ul>
-            </div>
+           {% include 'includes/inc_footer.html' %}
             <div class="col-6 col-md">
                 <h5>Дополнительно</h5>
                 <ul class="list-unstyled text-small">
