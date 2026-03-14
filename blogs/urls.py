@@ -8,5 +8,5 @@ app_name = BlogsConfig.name
 
 
 urlpatterns = [
-    path("blogs/", BlogListView.as_view(), name="home"),
+    path("blogs/", BlogListView.as_view(), name="blog-list"),
 ]
