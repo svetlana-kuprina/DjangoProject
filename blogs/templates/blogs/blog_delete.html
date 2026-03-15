@@ -1,0 +1,22 @@
+{%extends 'blogs/base.html'%}
+{% block content %}
+<div class="container" xmlns="http://www.w3.org/1999/html">
+    <div class="row">
+        <div class="col">
+            <form class="row" method="post" enctype="multipart/form-data">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Действительно хотите удалить блог: {{ object.name }}</h5>
+                    </div>
+                        {% csrf_token %}
+                    <div class="ms-md-auto">
+                        <a role="button" class="btn btn-lg btn-block btn-outline-primary" href="{% url 'blogs:blog-list' %}">Отменить</a>
+                        <button type="submit" class="btn btn-lg btn-block btn-outline-primary"> Удалить</button>
+                    </div>
+
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
