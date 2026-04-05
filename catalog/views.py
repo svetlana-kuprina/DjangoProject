@@ -1,3 +1,4 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy, reverse
 from django.views.generic import ListView, DetailView, TemplateView, CreateView, UpdateView, DeleteView
 
@@ -11,20 +12,20 @@ class CatalogListView(ListView):
     context_object_name = 'products'
 
 
-class CatalogDetailView(DetailView):
+class CatalogDetailView(LoginRequiredMixin, DetailView):
     model = Product
     template_name = 'product.html'
     context_object_name = 'product'
 
 
-class CatalogCreateView(CreateView):
+class CatalogCreateView(LoginRequiredMixin, CreateView):
     model = Product
     form_class = ProductForm
     template_name = 'product_form.html'
     success_url = reverse_lazy('catalog:home')
 
 
-class CatalogUpdateView(UpdateView):
+class CatalogUpdateView(LoginRequiredMixin, UpdateView):
     model = Product
     form_class = ProductForm
     template_name = 'product_form.html'
@@ -34,7 +35,7 @@ class CatalogUpdateView(UpdateView):
         return reverse('catalog:product', args=[self.kwargs.get('pk')])
 
 
-class CatalogDeleteView(DeleteView):
+class CatalogDeleteView(LoginRequiredMixin, DeleteView):
     model = Product
     template_name = 'product_delete.html'
     success_url = reverse_lazy('catalog:home')
