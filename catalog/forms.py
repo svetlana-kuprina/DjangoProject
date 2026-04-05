@@ -46,3 +46,9 @@ class ProductForm(forms.ModelForm):
                     'Запрещено использовать слова казино, криптовалюта, крипта, биржа, дешево, бесплатно, обман, полиция, радар')
 
         return description
+
+class ProductModeratorForm(forms.ModelForm):
+
+    class Meta:
+        model = Product
+        fields = ['publication']
