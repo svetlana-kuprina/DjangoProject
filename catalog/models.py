@@ -1,4 +1,3 @@
-
 from django.db import models
 
 from users.models import CustomUser
@@ -28,8 +27,9 @@ class Product(models.Model):
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="Дата создания")
     updated_at = models.DateTimeField(auto_now=True, verbose_name="Дата последнего изменения")
     publication = models.BooleanField(default=False, verbose_name="Публикация")
-    owner = models.ForeignKey(CustomUser, on_delete=models.SET_NULL, related_name="owner", verbose_name="Владелец", blank=True, null=True)
-
+    owner = models.ForeignKey(
+        CustomUser, on_delete=models.SET_NULL, related_name="owner", verbose_name="Владелец", blank=True, null=True
+    )
 
     def __str__(self):
         return f"Наименование {self.name} Цена {round(self.price)} Категория товара [{self.category}]"
@@ -38,4 +38,4 @@ class Product(models.Model):
         verbose_name = "Продукт"
         verbose_name_plural = "Продукты"
         ordering = ["name", "created_at", "updated_at", "price", "category"]
-        permissions = [('can_unpublish_product', 'Can unpublish product')]
+        permissions = [("can_unpublish_product", "Can unpublish product")]
