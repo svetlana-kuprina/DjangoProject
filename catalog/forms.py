@@ -36,9 +36,19 @@ class ProductForm(forms.ModelForm):
                 raise ValidationError(
                     'Запрещено использовать слова казино, криптовалюта, крипта, биржа, дешево, бесплатно, обман, полиция, радар')
 
+        return name
+
     def clean_description(self):
         description = self.cleaned_data["description"]
         for for_word in self.FORBIDDEN_WORDS:
             if for_word in lower(description):
                 raise ValidationError(
                     'Запрещено использовать слова казино, криптовалюта, крипта, биржа, дешево, бесплатно, обман, полиция, радар')
+
+        return description
+
+class ProductModeratorForm(forms.ModelForm):
+
+    class Meta:
+        model = Product
+        fields = ['publication']
