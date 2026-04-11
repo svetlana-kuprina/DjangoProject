@@ -1,0 +1,34 @@
+{%extends 'base.html'%}
+{% load my_tags %}
+{% block content %}
+<div class="row text-center">
+    <h3>Продукты категории {{ products.1.category }}</h3>
+    {% for product in products %}
+
+    <div class="col-3">
+        <div class="card mb-4 box-shadow">
+            <div class="card-header">
+                <h4 class="my-0 font-weight-normal">Наименование {{ product.name }}</h4>
+            </div>
+            <div class="card-body">
+                <h2 class="card-title pricing-card-title">цена {{ product.price }} руб.</h2>
+                <ul class="list-unstyled mt-3 mb-4 text-start m-3">
+                    <li> <img src="{{ product.picture | media_filter }}" class="img-thumbnail" width="200"></li>
+                    <li> {{ product.description|truncatechars:100 }}</li>
+                </ul>
+                <a role="button" class="btn btn-lg btn-block btn-outline-primary" href="{% url 'catalog:product' product.pk %}">Подробнее</a>
+
+                {% if "can_unpublish_product" in perms or user == user.owner %}
+                <a role="button" class="btn btn-lg btn-block btn-outline-primary" href="{% url 'catalog:update' product.pk %}">Редактировать</a>
+                <a role="button" class="btn btn-lg btn-block btn-outline-primary" href="{% url 'catalog:delete' product.pk %}">Удалить</a>
+                {% endif %}
+
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+    <div class="ms-md-auto">
+    <a role="button" class="btn btn-lg btn-block btn-outline-primary" href="{% url 'catalog:create' %}">Добавить</a>
+    </div>
+</div>
+{% endblock %}

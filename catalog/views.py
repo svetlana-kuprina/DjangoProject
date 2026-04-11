@@ -6,12 +6,22 @@ from django.views.decorators.cache import cache_page
 from django.utils.decorators import method_decorator
 from catalog.forms import ProductForm, ProductModeratorForm
 from catalog.models import Product
+from catalog.services import ListProduct
+from django.core.cache import cache
 
 
 class CatalogListView(ListView):
     model = Product
     template_name = "index.html"
     context_object_name = "products"
+
+    def get_queryset(self):
+        queryset = cache.get('product_list')
+        if not queryset:
+            queryset = super().get_queryset()
+            cache.set('product_list', queryset, 60 * 15)
+        return queryset
+
 
 @method_decorator(cache_page(60 * 15), name='dispatch')
 class CatalogDetailView(LoginRequiredMixin, DetailView):
@@ -67,10 +77,15 @@ class CatalogDeleteView(LoginRequiredMixin, DeleteView):
 class TemplateContactView(TemplateView):
     template_name = "contacts.html"
 
-class CatalogListProductView(ListView):
+class CatalogListProductView(DetailView):
     model = Product
-    template_name = "index.html"
+    template_name = "products.html"
     context_object_name = "products"
 
     def get_context_data(self, **kwargs):
-        context =
+        context = super().get_context_data(**kwargs)
+        obj = self.object.category
+        context["products"] = ListProduct.get_products_by_category(obj)
+        return context
+
+

@@ -32,7 +32,8 @@ class Product(models.Model):
     )
 
     def __str__(self):
-        return f"Наименование {self.name} Цена {round(self.price)} Категория товара [{self.category}]"
+        return f"Наименование: {self.name} Цена: {round(self.price)} Категория товара: [{self.category}]"
+
 
     class Meta:
         verbose_name = "Продукт"
