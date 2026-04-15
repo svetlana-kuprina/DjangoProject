@@ -6,7 +6,7 @@ from django.views.decorators.cache import cache_page
 from django.utils.decorators import method_decorator
 from catalog.forms import ProductForm, ProductModeratorForm
 from catalog.models import Product
-from catalog.services import ListProduct
+from catalog.services import ListProduct, get_products_cached
 from django.core.cache import cache
 
 
@@ -16,11 +16,7 @@ class CatalogListView(ListView):
     context_object_name = "products"
 
     def get_queryset(self):
-        queryset = cache.get('product_list')
-        if not queryset:
-            queryset = super().get_queryset()
-            cache.set('product_list', queryset, 60 * 15)
-        return queryset
+        return get_products_cached()
 
 
 @method_decorator(cache_page(60 * 15), name='dispatch')
