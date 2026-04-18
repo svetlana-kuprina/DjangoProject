@@ -24,6 +24,7 @@ pyupgrade = "^3.21.2"
 django = "^6.0.2"
 pillow = "^12.1.1"
 ipython = "^9.10.0"
+redis = "^7.4.0"
 
 
 [build-system]
