@@ -6,8 +6,8 @@ from blogs.models import BlogModel
 
 class BlogListView(ListView):
     model = BlogModel
-    template_name = 'blogs/blogs.html'
-    context_object_name = 'blogs'
+    template_name = "blogs/blogs.html"
+    context_object_name = "blogs"
 
     def get_queryset(self):
         queryset = super().get_queryset()
@@ -16,8 +16,8 @@ class BlogListView(ListView):
 
 class BlogDetailView(DetailView):
     model = BlogModel
-    template_name = 'blogs/blog.html'
-    context_object_name = 'blog'
+    template_name = "blogs/blog.html"
+    context_object_name = "blog"
 
     def get_object(self, queryset=None):
         self.object = super().get_object(queryset)
@@ -28,22 +28,22 @@ class BlogDetailView(DetailView):
 
 class BlogCreateView(CreateView):
     model = BlogModel
-    template_name = 'blogs/blog_create.html'
-    fields = ('name', 'content', 'preview', 'publication_attribute', 'number_of_views')
-    success_url = reverse_lazy('blogs:blog-list')
+    template_name = "blogs/blog_create.html"
+    fields = ("name", "content", "preview", "publication_attribute", "number_of_views")
+    success_url = reverse_lazy("blogs:blog-list")
 
 
 class BlogUpdateView(UpdateView):
     model = BlogModel
-    template_name = 'blogs/blog_create.html'
-    fields = ('name', 'content', 'preview', 'publication_attribute', 'number_of_views')
-    success_url = reverse_lazy('blogs:blog-list')
+    template_name = "blogs/blog_create.html"
+    fields = ("name", "content", "preview", "publication_attribute", "number_of_views")
+    success_url = reverse_lazy("blogs:blog-list")
 
     def get_success_url(self):
-        return reverse('blogs:blog', args=[self.kwargs.get('pk')])
+        return reverse("blogs:blog", args=[self.kwargs.get("pk")])
 
 
 class BlogDeleteView(DeleteView):
     model = BlogModel
-    template_name = 'blogs/blog_delete.html'
-    success_url = reverse_lazy('blogs:blog-list')
+    template_name = "blogs/blog_delete.html"
+    success_url = reverse_lazy("blogs:blog-list")
