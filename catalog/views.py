@@ -7,7 +7,7 @@ from django.utils.decorators import method_decorator
 from catalog.forms import ProductForm, ProductModeratorForm
 from catalog.models import Product
 from catalog.services import ListProduct, get_products_cached
-from django.core.cache import cache
+
 
 
 class CatalogListView(ListView):
